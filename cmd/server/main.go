@@ -1,18 +1,15 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
-	"github.com/go-chi/chi/v5"
-	"github.com/go-chi/chi/v5/middleware"
-)
+	"github.com/zoldyzdk/golink/internal/router"
+)	
 
 func main() {
-	r := chi.NewRouter()
-	r.Use(middleware.Logger)
+	r := router.Routes()
 
-	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Welcome!"))
-	})
+	fmt.Println("Starting API at port 3000")
 	http.ListenAndServe(":3000", r)
 }
